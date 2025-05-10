@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Repeat Teks - Alpin Developer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0faff;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #0277bd;
+      text-align: center;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #90caf9;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #0277bd;
+    }
+    .checkbox-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-weight: bold;
+      color: #01579b;
+    }
+    .about {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .about a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #0288d1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Alpin Developer</h1>
+
+  <label for="text">Tulis teks nya:</label>
+  <textarea id="text" rows="3" placeholder="Contoh: Halo kontol..."></textarea>
+
+  <label for="count">Masukin jumlah nya ngentod:</label>
+  <input type="number" id="count" min="1" value="5">
+
+  <label for="separator">Pisahkan ( Opsional Kontol ):</label>
+  <input type="text" id="separator" placeholder="Contoh: , atau - atau |">
+
+  <button onclick="repeatText()">Repeat Kontol</button>
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" id="newline" checked> NewLine</label>
+    <label><input type="checkbox" id="space" checked> Space</label>
+  </div>
+
+  <h2>Hasil:</h2>
+  <textarea id="output" rows="8" readonly placeholder="Hasil bakal muncul di sini..."></textarea>
+  <button onclick="copyOutput()">📋 Salin Hasil</button>
+  
+  <div class="about">
+    <p><strong>About:</strong></p>
+    <a href="https://youtube.com/alpindevv" target="_blank">YouTube</a>
+    <a href="https://t.me/alpinxyz" target="_blank">Telegram</a>
+    <a href="https://instagram.com/alpian1_" target="_blank">Instagram</a>
+    <a href="https://tiktok.com/@alpinklsel" target="_blank">TikTok</a>
+    <a href="https://wa.me/6283120589335" target="_blank">WhatsApp</a>
+  </div>
+
+  <footer>
+    Alpin Developer - Repeat Teks
+  </footer>
+
+  <script>
+    function repeatText() {
+      const text = document.getElementById("text").value;
+      const count = parseInt(document.getElementById("count").value);
+      const separator = document.getElementById("separator").value;
+      const addNewline = document.getElementById("newline").checked;
+      const addSpace = document.getElementById("space").checked;
+
+      let result = "";
+      for (let i = 0; i < count; i++) {
+        result += text;
+        if (addSpace) result += " ";
+        if (separator && i !== count - 1) result += separator;
+        if (addNewline) result += "\n";
+      }
+      document.getElementById("output").value = result.trim();
+    }
+    function copyOutput() {
+      const output = document.getElementById("output");
+      output.select();
+      output.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand("copy");
+      alert("✅ Hasil berhasil disalin ke clipboard!");
+    }
+  </script>
+
+</body>
+</html>
